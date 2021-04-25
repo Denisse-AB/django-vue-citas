@@ -2,8 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import RegexValidator
 
-alpha_spaces = RegexValidator(r'^[a-zA-Z ]*$', 'Only letters and spaces allowed.')
-num_only = RegexValidator(r'^[0-9 ]*$', 'Only Numbers allowed.')
+alpha_spaces = RegexValidator(r'^[a-zA-Z ]*$', 'Solo letras y espacios.')
+num_only = RegexValidator(r'^[0-9 ]*$', 'Solo números permitidos.')
 
 class Post(models.Model):
     email = models.EmailField(max_length=70, blank=False)
