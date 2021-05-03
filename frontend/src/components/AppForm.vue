@@ -2,7 +2,7 @@
   <div class="mx-auto w-75 mt-5 padding">
     <div id="card" class="position-relative p-4">
       <p class="text-dark font-weight-bold">
-        {{ msg }}!
+        {{ $t('Welcome') }}!
       </p>
       <b-card class="shadow-sm">
         <!-- form -->
@@ -19,7 +19,7 @@
               <b-form-input
                 v-model="email"
                 type="email"
-                :class="{'is-invalid' : errors[0]}" :placeholder="'email'"
+                :class="{'is-invalid' : errors[0]}" :placeholder="$t('email')"
                 trim
               ></b-form-input>
                <div class="error mt-1">{{ errors[0] }}</div>
@@ -29,13 +29,13 @@
 
           <b-row class="my-3">
             <b-col sm="2">
-              <label for="input-default">{{ 'Nombre' }}:</label>
+              <label for="input-default">{{ $t('name') }}:</label>
             </b-col>
             <b-col sm="10">
               <ValidationProvider name="name" rules="required|alpha_spaces" v-slot="{ errors }">
                <b-form-input
                  v-model="name"
-                 :class="{'is-invalid' : errors[0]}" placeholder="Tu nombre, solo letras permitidas"
+                 :class="{'is-invalid' : errors[0]}" :placeholder="$t('nameHolder')"
                  trim
                 ></b-form-input>
                <div class="error mt-1">{{ errors[0] }}</div>
@@ -51,7 +51,7 @@
           <ValidationProvider name="phone" rules="required|digits:10" v-slot="{ errors }">
             <b-form-input
               v-model="tel"
-              :class="{'form-control': 'true', 'is-invalid' : errors[0]}" placeholder="Telefono, ingresar 10 numeros solamente"
+              :class="{'form-control': 'true', 'is-invalid' : errors[0]}" :placeholder="$t('tel')"
               trim
             ></b-form-input>
             <div class="error mt-1">{{ errors[0] }}</div>
@@ -65,8 +65,8 @@
               <b-form-datepicker
                 v-model="date"
                 :date-disabled-fn="dateDisabled"
-                placeholder="Escoge un dia"
-                locale="es"
+                :placeholder="$t('dateHolder')"
+                :locale="$t('calendar')"
               ></b-form-datepicker>
             </b-col>
             <b-col class="mt-3" md>
@@ -85,19 +85,19 @@
             variant="success"
             type="submit"
           >
-            {{ 'Ingresar' }}
+            {{ $t('Submit') }}
           </b-button>
         </b-form>
         <!-- thankyou note -->
         <div v-show="icon">
-          <p id="icon"><b-icon-check-circle-fill></b-icon-check-circle-fill> {{ 'Gracias' }}!</p>
-          <h5 class="offset-3 msg">{{ 'Verifica tu email' }} !</h5>
+          <p id="icon"><b-icon-check-circle-fill></b-icon-check-circle-fill> {{ $t('Thankyou') }}!</p>
+          <h5 class="offset-3 msg">{{ $t('check') }}!</h5>
           <hr>
-          <p class="mt-4">{{ 'Su cita fue aceptada para:' }} <strong>{{ data.date }}</strong> {{ 'a las' }} <strong>{{ data.time }}</strong></p>
+          <p class="mt-4">{{ $t('day') }} <strong>{{ data.date }}</strong> {{ $t('time') }} <strong>{{ data.time }}</strong></p>
         </div>
       </b-card>
       <p v-show="response" class="text-danger font-weight-bold mb-0 mt-2">
-        {{ 'Turno agotado, favor escoger otra hora o dia.' }}
+        {{ $t('message') }}
       </p>
       <b-overlay
         :show="spinner"
@@ -146,7 +146,7 @@ export default {
       csrftoken: '',
       time: null,
       options: [
-        { value: null, text: 'Escoja una Hora' },
+        { value: null, text: this.$t('hour') },
         { value: '12:00:00', text: '12:00 PM' },
         { value: '13:00:00', text: '1:00 PM' },
         { value: '14:00:00', text: '2:00 PM' },
@@ -157,7 +157,6 @@ export default {
 
   async mounted () {
     if (document.cookie && document.cookie !== '') {
-      // TODO: split token ;
       const token = document.cookie.split('=')
       if (token[0] === 'csrftoken') {
         this.csrftoken = decodeURIComponent(token[1]).trim()
@@ -203,7 +202,7 @@ export default {
           }
         })
       } catch (err) {
-        alert('Ha ocurrido un error!')
+        alert(this.$t('alert'))
         this.spinner = false
       }
     }
