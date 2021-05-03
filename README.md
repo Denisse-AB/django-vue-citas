@@ -9,8 +9,8 @@ Aplicación de una página para sacar citas.
 ## Setup Django Development
 
 - Clone repository
-- Create virtual environment
-  - For instructions creating environment [Click Here](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
+- Crea el virtual environment
+  - Instrucciones para crear el env [Aquí](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
 
 ```python
 cd citas_main
