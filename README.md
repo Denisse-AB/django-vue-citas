@@ -4,12 +4,13 @@ Aplicación de una página para sacar citas.
 
 ## Requisitos
 
-@vue/cli 4.5.12 | Python 3.9.2
+@vue/cli 4.5.12 | Python 3.9.4
 
 ## Setup Django Development
 
 - Clone repository
 - Create virtual environment
+  For instructions creating environment [Click Here](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
 
 ```python
 cd citas_main
