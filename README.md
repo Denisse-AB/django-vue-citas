@@ -10,7 +10,7 @@ Aplicación de una página para sacar citas.
 
 - Clone repository
 - Create virtual environment
-  For instructions creating environment [Click Here](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
+  - For instructions creating environment [Click Here](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
 
 ```python
 cd citas_main
