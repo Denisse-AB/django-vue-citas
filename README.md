@@ -16,7 +16,7 @@ Aplicación de una página para sacar citas.
 cd citas_main
 pip install -r requirements.txt
 ```
-- Setup SECRET_KEY y environ variables en settings file
+- Cambia el SECRET_KEY y las variables en settings file
 - Corre los migrations
 - Crea superuser
 
