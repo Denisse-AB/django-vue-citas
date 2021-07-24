@@ -9,7 +9,7 @@ class PostService {
   static async insertPost (email, name, date, tel, time, csrftoken) {
     axios.defaults.headers.common['X-CSRFToken'] = csrftoken
     const res = await axios.post(url, {
-      email, name, date, tel, time
+      email, name, date, tel, time, csrftoken
     })
     return res
   }
