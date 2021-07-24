@@ -31,7 +31,7 @@ class PostViewSet(viewsets.ModelViewSet):
                 count = q.count()
                 # Cuatro citas por hora, four appointments per hour.
                 if count > 3:
-                    return Response(status=status.HTTP_200_OK, data=request.data)
+                    return Response(data=request.data, status=status.HTTP_200_OK)
                 else:
                     serializer.save()
                     # email
@@ -47,7 +47,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
                     send_mail(subject, html_message, from_email, [to], html_message=html_message)
 
-                    return Response(status=status.HTTP_201_CREATED, data=request.data)
+                    return Response(data=request.data, status=status.HTTP_201_CREATED)
 
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
