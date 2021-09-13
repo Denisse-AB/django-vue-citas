@@ -156,7 +156,7 @@ export default {
     }
   },
 
-  async mounted () {
+  mounted () {
     if (document.cookie && document.cookie !== '') {
       const token = document.cookie.split('=')
       if (token[0] === 'csrftoken') {
