@@ -23,12 +23,12 @@ class PostViewSet(viewsets.ModelViewSet):
         if request.method == 'POST' and request.data['csrftoken']:
             serializer = PostSerializers(data=request.data)
             if serializer.is_valid():
-                input_email = request.data.get('email')
-                input_name = request.data.get('name')
-                input_date = request.data.get('date')
-                input_time = request.data.get('time')
-                q = Post.objects.filter(date=input_date, time=input_time)
-                count = q.count()
+                email = request.data.get('email')
+                name = request.data.get('name')
+                date = request.data.get('date')
+                time = request.data.get('time')
+                check = Post.objects.filter(date=date, time=time)
+                count = check.count()
                 # Cuatro citas por hora, four appointments per hour.
                 if count > 3:
                     return Response(data=request.data, status=status.HTTP_200_OK)
@@ -36,14 +36,14 @@ class PostViewSet(viewsets.ModelViewSet):
                     serializer.save()
                     # email
                     context = {
-                        'name': input_name,
-                        'date': input_date,
-                        'time': input_time
+                        'name': name,
+                        'date': date,
+                        'time': time
                     }
                     subject = 'Tu Cita!'
                     html_message = render_to_string('citas\email.html', context)
                     from_email = 'from@example.com'
-                    to = input_email
+                    to = email
 
                     send_mail(subject, html_message, from_email, [to], html_message=html_message)
 

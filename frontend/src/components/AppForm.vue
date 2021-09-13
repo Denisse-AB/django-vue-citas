@@ -2,7 +2,7 @@
   <div class="mx-auto w-75 mt-5 padding">
     <div id="card" class="position-relative p-4">
       <p class="text-dark font-weight-bold">
-        {{ $t('Welcome') }}!
+        <i>{{ $t('Welcome') }}!</i>
       </p>
       <b-card class="shadow-sm">
         <!-- form -->
@@ -84,6 +84,7 @@
             :disabled="spinner"
             variant="success"
             type="submit"
+            squared
           >
             {{ $t('Submit') }}
           </b-button>
@@ -179,28 +180,26 @@ export default {
       this.data = {}
 
       try {
-        await PostService.insertPost(
-          this.email, this.name, this.date, this.tel, this.time, this.csrftoken
+        const res = await PostService.insertPost(
+          this.email, this.name, this.date, this.tel, this.time, this.csrftoken)
 
-        ).then(res => {
-          if (res.status === 201) {
-            this.email = ''
-            this.name = ''
-            this.date = ''
-            this.tel = ''
-            this.time = ''
-            this.card = false
-            this.spinner = false
-            this.icon = true
-            this.response = false
-            this.data = res.data
-          }
+        if (res.status === 201) {
+          this.email = ''
+          this.name = ''
+          this.date = ''
+          this.tel = ''
+          this.time = ''
+          this.card = false
+          this.spinner = false
+          this.icon = true
+          this.response = false
+          this.data = res.data
+        }
 
-          if (res.status === 200) {
-            this.spinner = false
-            this.response = true
-          }
-        })
+        if (res.status === 200) {
+          this.spinner = false
+          this.response = true
+        }
       } catch (err) {
         alert(this.$t('alert'))
         this.spinner = false
@@ -208,22 +207,21 @@ export default {
     }
   }
 }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-$green-bg: #c6ebd9;
+$card-bg: #c6ebd9;
 $error: red;
-$green: green;
+$input: green;
 $sm : 576px;
 
 #card {
-  background-color: $green-bg;
+  background-color: $card-bg;
 }
 
 .form-control.focus, .form-control:focus, .custom-select:focus {
-  border-color: $green;
+  border-color: $input;
   box-shadow: 0 0 0 0.2rem rgba(77, 192, 181, 0.25);
 }
 
@@ -237,7 +235,7 @@ $sm : 576px;
 
 #icon {
   font-size: 70px;
-  color: $green;
+  color: $input;
 }
 
 .msg{
