@@ -1,26 +1,19 @@
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 
-
-from rest_framework import viewsets, status
+from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .serializers import PostSerializers
+
 from .models import Post
 
 
-@method_decorator(login_required, name='serializer_class')
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('-date')
-    serializer_class = PostSerializers
+class CreateAppointment(APIView):
 
-
-    @method_decorator(ensure_csrf_cookie)
-    def create(self, request):
-        if request.method == 'POST' and request.data['csrftoken']:
+    def post(self, request, format=None):
+        if request.method == 'POST':
             serializer = PostSerializers(data=request.data)
             if serializer.is_valid():
                 email = request.data.get('email')
@@ -33,21 +26,21 @@ class PostViewSet(viewsets.ModelViewSet):
                 if count > 3:
                     return Response(data=request.data, status=status.HTTP_200_OK)
                 else:
-                    serializer.save()
+                    obj = serializer.save()
                     # email
                     context = {
                         'name': name,
-                        'date': date,
-                        'time': time
+                        'date': obj.date,
+                        'time': obj.time
                     }
                     subject = 'Tu Cita!'
-                    html_message = render_to_string('citas\email.html', context)
+                    html_message = render_to_string('citas/email.html', context)
                     from_email = 'from@example.com'
                     to = email
 
                     send_mail(subject, html_message, from_email, [to], html_message=html_message)
 
-                    return Response(data=request.data, status=status.HTTP_201_CREATED)
+                    return Response(data={'date': obj.date, 'time': obj.time}, status=status.HTTP_201_CREATED)
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

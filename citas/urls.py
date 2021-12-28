@@ -1,12 +1,7 @@
-from django.urls import path, include
-from rest_framework import routers
-from .views import PostViewSet
+from django.urls import path
+from .views import CreateAppointment
 
-
-router = routers.DefaultRouter()
-router.register(r'post', PostViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('api-post/', include('rest_framework.urls', namespace='rest_framework')),
+    path('post/', CreateAppointment.as_view(), name='create'),
 ]
