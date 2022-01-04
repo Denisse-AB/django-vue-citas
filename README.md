@@ -4,7 +4,7 @@ Aplicación de una página para sacar citas.
 
 ## Requisitos
 
-@vue/cli 4.5.12 | Python 3.9.4 | Nodejs v14.6.0
+@vue/cli 4.5.12 | Python 3.9.4 | Nodejs ^16.13.1
 
 ## Setup Django Development
 
