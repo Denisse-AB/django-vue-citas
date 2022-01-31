@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.1",
   "private": true,
+  "homepage": "https://denisse-ab.github.io/app-pages/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

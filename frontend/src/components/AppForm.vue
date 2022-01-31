@@ -180,25 +180,30 @@ export default {
       this.data = {}
 
       try {
-        const res = await PostService.insertPost(
-          this.email, this.name, this.date, this.tel, this.time, this.csrftoken)
+        const { email, name, date, tel, time } = this
 
-        if (res.status === 201) {
-          this.email = ''
-          this.name = ''
-          this.date = ''
-          this.tel = ''
-          this.time = ''
-          this.card = false
+        if (email && name && date && tel && time) {
+          const res = await PostService.insertPost(
+            email, name, date, tel, time, this.csrftoken
+          )
+          if (res.status === 201) {
+            this.email = ''
+            this.name = ''
+            this.date = ''
+            this.tel = ''
+            this.time = ''
+            this.card = false
+            this.spinner = false
+            this.icon = true
+            this.response = false
+            this.data = res.data
+          }
+          if (res.status === 200) {
+            this.spinner = false
+            this.response = true
+          }
+        } else {
           this.spinner = false
-          this.icon = true
-          this.response = false
-          this.data = res.data
-        }
-
-        if (res.status === 200) {
-          this.spinner = false
-          this.response = true
         }
       } catch (err) {
         alert(this.$t('alert'))
