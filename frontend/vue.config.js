@@ -1,4 +1,6 @@
-module.exports = {
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
   devServer: {
     proxy: {
       '/post': {
@@ -6,13 +8,15 @@ module.exports = {
       }
     }
   },
-
   pluginOptions: {
     i18n: {
       locale: 'es',
       fallbackLocale: 'en',
-      localeDir: 'plugins',
-      enableInSFC: true
+      localeDir: 'locales',
+      enableLegacy: false,
+      runtimeOnly: false,
+      compositionOnly: false,
+      fullInstall: true
     }
   }
-}
+})

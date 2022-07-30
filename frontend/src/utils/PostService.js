@@ -6,10 +6,9 @@ axios.defaults.xsrfCookieName = 'csrftoken'
 const url = 'post/'
 
 class PostService {
-  static async insertPost (email, name, date, tel, time, csrftoken) {
-    axios.defaults.headers.common['X-CSRFToken'] = csrftoken
+  static async insertAppointment (name, email, tel, date, time) {
     const res = await axios.post(url, {
-      email, name, date, tel, time, csrftoken
+      name, email, tel, date, time
     })
     return res
   }

@@ -15,3 +15,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.email
+
+    def phone_number(self):
+        return '%s-%s-%s' % (self.tel[:3], self.tel[3:6], self.tel[6:10])

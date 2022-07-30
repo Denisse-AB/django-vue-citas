@@ -1,26 +1,32 @@
-# Django y Vue citas SPA
+# Django Appointments SPA
 
-Aplicación de una página para sacar citas.
+Single Page Application (SPA) to make appointments using Vue 3 composition API, Django, and Django Rest Framework.
 
-## Requisitos
+## Requirements
 
-@vue/cli 4.5.12 | Python 3.9.4 | Nodejs ^16.13.1
+Vue 3 | Python ^3.9.4 | Postgressql
+
+## Description
+
+This application consists of a form in which your clients or users are going to make appointments for your business or organization. The user will receive an email when the appointment is accepted.
+
+The owner of this application will manage these appointments through the database. It is configured to receive four appointments every hour (You can change this in the views.py file), it has English and Spanish translation and the database it uses is Postgressql, you can configure it however you want 👍
 
 ## Setup Django Development
 
 - Clone repository
-- Crea el virtual environment
-  - Instrucciones para crear el env [Aquí](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
-  - Entorno Virtual Español [Aquí](https://docs.python.org/es/3/tutorial/venv.html).
-- Activa el virtual environment
+- Create the virtual environment
+  - [Instructions to create the .env](https://docs.djangoproject.com/en/3.2/howto/windows/#setting-up-a-virtual-environment/).
+  - [Virtual Environment](https://docs.python.org/3/tutorial/venv.html).
+- Activate the virtual environment
 
 ```python
 cd citas_main
 pip install -r requirements.txt
 ```
-- Cambia el SECRET_KEY y las variables en settings file
-- Corre los migrations
-- Crea superuser
+- Change the SECRET_KEY and variables in settings file
+- Run the migrations
+- Create superuser
 
 ## Setup Vue Development
 
@@ -31,6 +37,6 @@ npm run serve
 ```
 
 ## Donación
-Si te gustó este proyecto, regálame una taza de :coffee: :wink:
+If you liked this project, buy me a cup of :coffee: :wink:
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=263QJ8D5YHR8E&no_recurring=0&item_name=I+believe+in+open+source%2C+but+a+little+donation+will+be+appreciated.+Thanks%21&currency_code=USD)
